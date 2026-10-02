@@ -1,0 +1,853 @@
+{
+  "asset_count": 94,
+  "assets": [
+    {
+      "package": 1,
+      "file": "match3/gems/gem_red.png",
+      "size": [
+        122,
+        129
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/gems/gem_blue.png",
+      "size": [
+        110,
+        124
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/gems/gem_green.png",
+      "size": [
+        113,
+        116
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/gems/gem_yellow.png",
+      "size": [
+        108,
+        116
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/gems/gem_purple.png",
+      "size": [
+        116,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/gems/gem_cyan.png",
+      "size": [
+        120,
+        130
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/rocket_horizontal.png",
+      "size": [
+        213,
+        119
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/rocket_vertical.png",
+      "size": [
+        119,
+        167
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/bomb.png",
+      "size": [
+        140,
+        165
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/rainbow.png",
+      "size": [
+        153,
+        157
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/rocket_horizontal_glow.png",
+      "size": [
+        208,
+        135
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/rocket_vertical_glow.png",
+      "size": [
+        130,
+        186
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/bomb_glow.png",
+      "size": [
+        147,
+        178
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/specials/rainbow_glow.png",
+      "size": [
+        167,
+        158
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/ice.png",
+      "size": [
+        136,
+        137
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/ice_double.png",
+      "size": [
+        135,
+        141
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/crate.png",
+      "size": [
+        126,
+        140
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/crate_reinforced.png",
+      "size": [
+        132,
+        139
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/chain_lock.png",
+      "size": [
+        136,
+        139
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/key.png",
+      "size": [
+        138,
+        148
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/ice_reinforced_cracked.png",
+      "size": [
+        150,
+        148
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/obstacles/crate_reinforced_damaged.png",
+      "size": [
+        151,
+        154
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/boosters/hammer.png",
+      "size": [
+        130,
+        154
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/boosters/rocket.png",
+      "size": [
+        139,
+        149
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/boosters/bomb.png",
+      "size": [
+        126,
+        145
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/boosters/shuffle.png",
+      "size": [
+        124,
+        151
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/boosters/plus_5_moves.png",
+      "size": [
+        142,
+        136
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/currency/coin.png",
+      "size": [
+        160,
+        160
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/currency/star.png",
+      "size": [
+        140,
+        137
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/currency/improvement_token.png",
+      "size": [
+        165,
+        160
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/daily_gift.png",
+      "size": [
+        138,
+        148
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/lock.png",
+      "size": [
+        120,
+        157
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/check.png",
+      "size": [
+        170,
+        190
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/reward_chest.png",
+      "size": [
+        200,
+        181
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/star_badge_1.png",
+      "size": [
+        155,
+        131
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/star_badge_2.png",
+      "size": [
+        182,
+        125
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/star_badge_3.png",
+      "size": [
+        216,
+        138
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/star_badge_empty.png",
+      "size": [
+        155,
+        132
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/button_restart.png",
+      "size": [
+        145,
+        170
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/button_shop.png",
+      "size": [
+        160,
+        170
+      ],
+      "alpha": true
+    },
+    {
+      "package": 1,
+      "file": "match3/ui/badge_locked.png",
+      "size": [
+        126,
+        156
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/balcony_balustrade.png",
+      "size": [
+        208,
+        113
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/bench_stone.png",
+      "size": [
+        99,
+        73
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/bench_white_ornate.png",
+      "size": [
+        137,
+        98
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/bench_wood_iron.png",
+      "size": [
+        141,
+        84
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/bird_blue.png",
+      "size": [
+        115,
+        97
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/bush_flowering.png",
+      "size": [
+        133,
+        98
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/bush_round.png",
+      "size": [
+        84,
+        84
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/butterfly_orange.png",
+      "size": [
+        119,
+        92
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/debris_pile.png",
+      "size": [
+        251,
+        101
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/estate_sign.png",
+      "size": [
+        123,
+        115
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/fence_black_iron.png",
+      "size": [
+        138,
+        116
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/fence_corner_stone.png",
+      "size": [
+        123,
+        124
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/fence_stone_balustrade.png",
+      "size": [
+        158,
+        107
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/fence_white_picket.png",
+      "size": [
+        143,
+        116
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/flower_cluster.png",
+      "size": [
+        127,
+        83
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/flowerbed_multicolor.png",
+      "size": [
+        163,
+        77
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/flowerbed_purple_white.png",
+      "size": [
+        142,
+        78
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/flowerbed_roses.png",
+      "size": [
+        157,
+        79
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/fountain_classic.png",
+      "size": [
+        178,
+        144
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/fountain_rectangular.png",
+      "size": [
+        156,
+        136
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/fountain_statue.png",
+      "size": [
+        163,
+        141
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/gate_iron.png",
+      "size": [
+        312,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/grass_tuft.png",
+      "size": [
+        99,
+        74
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/green_branch.png",
+      "size": [
+        110,
+        97
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/house_blue_classic.png",
+      "size": [
+        236,
+        202
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/house_green_victorian.png",
+      "size": [
+        235,
+        197
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/house_stone_elegant.png",
+      "size": [
+        260,
+        209
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/ivy_vine.png",
+      "size": [
+        145,
+        93
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/lamp_black.png",
+      "size": [
+        58,
+        184
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/lamp_green_triple.png",
+      "size": [
+        76,
+        187
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/lamp_stone_gold.png",
+      "size": [
+        76,
+        182
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/path_cobblestone.png",
+      "size": [
+        162,
+        107
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/path_red_brick.png",
+      "size": [
+        163,
+        107
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/path_stone.png",
+      "size": [
+        151,
+        107
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/pond.png",
+      "size": [
+        286,
+        99
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/rock_flowers.png",
+      "size": [
+        142,
+        90
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/tree_conifer.png",
+      "size": [
+        79,
+        177
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/tree_pink_blossom.png",
+      "size": [
+        100,
+        171
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/tree_round_green.png",
+      "size": [
+        104,
+        169
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/window_arched_blue.png",
+      "size": [
+        123,
+        171
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/window_rect_blue.png",
+      "size": [
+        115,
+        163
+      ],
+      "alpha": true
+    },
+    {
+      "package": 2,
+      "file": "estate/window_round_blue.png",
+      "size": [
+        120,
+        163
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "branding/app_icon_gem.png",
+      "size": [
+        165,
+        193
+      ],
+      "alpha": false
+    },
+    {
+      "package": 3,
+      "file": "branding/logo_gem_garden_ru.png",
+      "size": [
+        310,
+        172
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "fx/bomb_blast.png",
+      "size": [
+        132,
+        129
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "fx/energy_ring.png",
+      "size": [
+        150,
+        125
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "fx/rainbow_splash.png",
+      "size": [
+        136,
+        111
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "fx/reward_glow.png",
+      "size": [
+        115,
+        138
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "ui/backgrounds/level_map.png",
+      "size": [
+        232,
+        244
+      ],
+      "alpha": false
+    },
+    {
+      "package": 3,
+      "file": "ui/banners/defeat_ru.png",
+      "size": [
+        281,
+        125
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "ui/banners/level_complete_ru.png",
+      "size": [
+        273,
+        127
+      ],
+      "alpha": true
+    },
+    {
+      "package": 3,
+      "file": "ui/banners/victory_ru.png",
+      "size": [
+        294,
+        122
+      ],
+      "alpha": true
+    },
+    {
+      "package": "visual-recovery",
+      "file": "estate/world-backdrop.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha": false,
+      "format": "webp",
+      "quality": 92
+    }
+  ]
+}

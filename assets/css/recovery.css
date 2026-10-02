@@ -1,0 +1,127 @@
+/* Crystal artwork is the primary visual at every quality tier. */
+.board{background:radial-gradient(ellipse at 50% 0,#214640,#10292c 80%);border-color:#bfa970;box-shadow:0 0 0 3px #0b2528,inset 0 1px 2px #e7deb52b,0 12px 24px #0004;overflow:hidden}
+.cell{border:1px solid #849f8920;background:linear-gradient(145deg,#2c4b422b,#051c225e);box-shadow:inset 0 1px 1px #b9dab00c,inset 0 -1px 2px #0003;border-radius:11px}
+.gem{inset:5%;transform-origin:50% 75%;filter:drop-shadow(0 3px 1.8px #00171aac);transition:scale 90ms ease-out,translate 90ms ease-out}
+.gem.art-gem{background-image:var(--asset-normal);background-size:contain;background-repeat:no-repeat;background-position:center}
+.gem.special{inset:2%;filter:drop-shadow(0 2px 2px #011b22a0)}
+.gem.special:after{animation:specialShine 5s ease-in-out infinite;opacity:0}
+.cell.selected{background:radial-gradient(ellipse,#698b5444,#24483c);box-shadow:inset 0 0 0 1.5px #f6df9dbb,0 0 12px #e5cf772e;z-index:6}
+.cell.selected[data-tap-power="true"]{outline:2px solid #ffe5a0;outline-offset:-3px;background:radial-gradient(ellipse,#ba9d514f,#24483c);box-shadow:inset 0 0 0 1.5px #fff0bacc,0 0 15px #e5cf7750}
+.cell.selected .gem{scale:1.055;translate:0 -1.5px;filter:drop-shadow(0 3px 2px #041c1d) drop-shadow(0 0 4px #f4dc9b66)}
+.cell.pressed .gem{scale:1.065;translate:0 -1px}
+.cell.pressed{background:#4b695855}
+.cell.in-motion{z-index:8}
+.cell.matching{background:radial-gradient(ellipse,#e6dcb72e,#163b3411)}
+.cell.fx-charging{z-index:7;background:radial-gradient(ellipse,#b9a36924,#163b3411)}
+.cell.fx-charging .gem:after{animation:none;opacity:.2}
+.fx-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:24;pointer-events:none;contain:layout paint}
+.cell.hole{background:#06191f;border-color:#021318;opacity:.8}
+.cell.hint{outline:2px solid #ffe599;outline-offset:-2px}
+.cell.hint .gem{filter:drop-shadow(0 0 3px #ffe299a0)}
+.ice-layer{opacity:.68}.crate-layer,.chain-layer{filter:drop-shadow(0 2px 1px #051c2570)}
+.garden-fx{z-index:25;contain:layout style;will-change:transform,opacity}
+.selection-glint{background:radial-gradient(ellipse,#fffbd7 0 12%,transparent 28%),linear-gradient(transparent 43%,#fff7c4 50%,transparent 57%),linear-gradient(90deg,transparent 43%,#fff7c4 50%,transparent 57%)}
+.goal-mote{z-index:33;filter:drop-shadow(0 0 3px #fff1b5)}
+.combo{top:37%;left:18%;right:18%;font-size:15px;padding:8px 10px;background:#092c2ae8;border-color:#d4bf7daa;box-shadow:0 5px 15px #0004;backdrop-filter:blur(3px)}
+.board[data-cascade="4"]{border-color:#f3d996}
+.goal-fill{background:linear-gradient(90deg,#91c894,#f1d38c)}
+.art-result-banner{filter:drop-shadow(0 3px 5px #00191e66)}
+.result-stars{color:#ffe59a;text-shadow:0 2px #795b25,0 0 13px #e4c37a55}
+.result-goal{border:1px solid #adc58c22}
+.app{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right));padding-bottom:max(12px,env(safe-area-inset-bottom))}
+.estate-grid{grid-template-columns:minmax(0,2.25fr) minmax(250px,1fr);gap:18px}
+.estate-scene,.estate-preview-scene{position:relative;aspect-ratio:1000/680;overflow:hidden;isolation:isolate;background:#8da160;border-radius:18px}
+.estate-scene{border:1px solid #dbce98aa;box-shadow:0 12px 25px #001d253b,inset 0 1px 1px #fff8;min-width:0}
+.estate-world{position:absolute;inset:0;overflow:hidden;isolation:isolate;contain:layout style}
+.estate-backdrop{position:absolute;inset:0;background:center/100% 100% no-repeat;filter:saturate(calc(.7 + var(--estate-progress,0)*.19)) brightness(calc(.86 + var(--estate-progress,0)*.14));z-index:0}
+.estate-ground{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.estate-object{position:absolute;transform:translate(-50%,-100%) rotate(var(--object-angle,0deg));transform-origin:50% 100%;padding:0;border:0;background:none;border-radius:0;min-height:0;line-height:0;box-shadow:none}
+.estate-object:hover:not(:disabled){filter:none}
+.estate-object:active:not(:disabled){transform:translate(-50%,-100%) rotate(var(--object-angle,0deg))}
+.estate-object:focus-visible{outline:2px solid #ffe19a;outline-offset:3px;border-radius:8px}
+.estate-object .object-art{display:block;position:relative;transform-origin:50% 94%}
+.estate-object img{display:block;width:100%;height:auto;pointer-events:none}
+.object-revive_trees .object-art{aspect-ratio:1/1.62}
+.object-wash_facade .object-art{aspect-ratio:1.23}
+.object-clean_fountain .object-art{aspect-ratio:1.13}
+.object-light_porch .object-art{aspect-ratio:1/2.6}
+.object-restore_bench .object-art{aspect-ratio:1.4}
+.object-revive_garden .object-art{aspect-ratio:1.8}
+.object-bush .object-art{aspect-ratio:1.18}
+.estate-object:is(.object-revive_trees,.object-wash_facade,.object-clean_fountain,.object-light_porch,.object-restore_bench,.object-revive_garden,.object-bush) img{height:100%;object-fit:contain;object-position:center bottom}
+.estate-object.neglected .object-art{filter:saturate(.22) sepia(.15) brightness(.78);opacity:.83}
+.estate-object.object-revive_garden.neglected .object-art,.estate-object.object-bush.neglected .object-art{filter:saturate(.16) sepia(.48) brightness(.72);scale:.86 .61;transform-origin:50% 100%}
+.estate-object.object-revive_trees.neglected .object-art{filter:saturate(.19) sepia(.5) brightness(.73);opacity:.9}
+.estate-object.built:hover .object-art{filter:brightness(1.06)}
+.estate-object.distant-object{opacity:.74;filter:saturate(.65)}
+.fence-section .object-art{transform-origin:50% 100%}
+.object-ivy{pointer-events:none}
+.estate-clutter{position:absolute;inset:0;z-index:850;pointer-events:none}
+.estate-debris{position:absolute;transform:translate(-50%,-100%);filter:saturate(.58);pointer-events:none}
+.estate-debris img{width:100%;display:block}
+.estate-light{position:absolute;inset:0;z-index:950;pointer-events:none;background:linear-gradient(125deg,#fff6ca12,transparent 32%,transparent 75%,#173d3820)}
+.estate-scene[data-zone="8"] .estate-backdrop{filter:saturate(.78) brightness(.8)}
+.estate-scene[data-zone="8"] .estate-light{background:linear-gradient(110deg,#ecb74c14,#18335918)}
+.estate-lamp-glow{position:absolute;left:7%;top:4%;width:82%;height:30%;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse,#fff3ab8c,transparent 65%);opacity:.75;animation:estateLamp 4s ease-in-out infinite}
+.fountain-water,.pond-water{position:absolute;left:19%;right:19%;bottom:9%;height:10%;overflow:hidden;border-radius:50%;pointer-events:none}
+.pond-water{left:19%;right:18%;bottom:22%;height:32%}
+.water-ripple{position:absolute;inset:10%;border:1px solid #e7ffff9c;border-radius:50%;opacity:0;animation:estateRipple 2.7s ease-out infinite;animation-delay:var(--ripple-delay)}
+.fountain-glint{position:absolute;left:47%;top:12%;width:4%;height:37%;background:linear-gradient(transparent,#daffffbb,transparent);opacity:.65;animation:estateFlow 1.9s ease-in-out infinite}
+.estate-window-lights{position:absolute;inset:0;pointer-events:none;--window-light:#c5eeff}
+.window-tone-2{--window-light:#ffe2a0}.window-tone-3{--window-light:#c1cbbb;opacity:.35}
+.estate-window-lights i{position:absolute;display:block;width:2%;height:4%;border-radius:40% 40% 0 0;background:var(--window-light);box-shadow:0 0 5px var(--window-light);opacity:.8}
+.estate-butterfly,.estate-bird{position:absolute;z-index:905;pointer-events:none;animation:estateCritter 5s ease-in-out infinite}
+.estate-bird{animation-duration:7s}.estate-butterfly img,.estate-bird img{width:100%;display:block}
+.estate-bulb{animation:estateLamp 4s ease-in-out infinite}
+.estate-clean-dust{position:absolute;inset:45% 20% 0;z-index:950;background:radial-gradient(ellipse,#ede4b788,transparent 67%);pointer-events:none}
+.estate-renovation-glint{position:absolute;left:50%;top:62%;width:40%;aspect-ratio:1;background:radial-gradient(ellipse,#ffe8a43d,transparent 68%);z-index:960;pointer-events:none;opacity:0}
+.scene-badge{z-index:1000;background:#0c352dde;border:1px solid #f3e2af4d;backdrop-filter:blur(3px);font-size:10px;max-width:calc(100% - 24px)}
+.zone-lock{z-index:990;background:#092f36ba;backdrop-filter:blur(3px)}
+.estate-task-card{padding:14px;border-color:#a4b68a44}.estate-task-card h3{font-size:21px}.estate-tasks{max-height:370px;gap:7px}
+.estate-task{min-height:59px;padding:8px}.estate-task.available{background:linear-gradient(125deg,#426a46,#245146);border-color:#e5ce8390}
+.task-copy b{font-size:11px}.task-copy small{font-size:9px}.task-action{min-height:42px;min-width:48px}
+.estate-caption{line-height:1.4}.estate-caption strong{max-width:55%}
+.design-preview{height:auto!important;aspect-ratio:1000/680;margin-bottom:10px;background:none!important;border:1px solid #b5c69055;border-radius:10px;overflow:hidden}
+.estate-preview-scene{width:100%;height:100%;border-radius:0;pointer-events:none}.estate-preview-scene .estate-object{pointer-events:none}
+.estate-preview-scene *{animation:none!important}
+.estate-side-fence.neglected{opacity:.7;filter:saturate(.2)}
+.utility-icon{width:20px;height:20px;display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.view-tab .utility-icon{width:17px;height:17px;margin-right:4px;color:#d5ca8f}
+.result-stars{display:flex;justify-content:center;gap:8px;letter-spacing:0}.result-star-image{width:35px;height:35px;object-fit:contain;filter:drop-shadow(0 2px 4px #a67d363d)}.result-star-image.empty{filter:grayscale(1);opacity:.3}
+.celebration-piece{position:fixed;border-radius:2px;z-index:110}
+.design-check{z-index:1100;font-size:8px}.design-option{padding:7px}.design-option b{font-size:11px}.design-option small{font-size:9px}
+@keyframes estateRipple{0%{transform:scale(.35);opacity:0}22%{opacity:.8}100%{transform:scale(1.25);opacity:0}}
+@keyframes estateFlow{0%,100%{opacity:.35;transform:scaleY(.95)}50%{opacity:.75;transform:scaleY(1.05)}}
+@keyframes estateLamp{0%,100%{opacity:.7}50%{opacity:.95}}
+@keyframes estateCritter{0%,100%{transform:translate(0,0) rotate(-4deg)}50%{transform:translate(13px,-7px) rotate(5deg)}}
+body.system-paused .estate-world *,body.system-paused .estate-world *:after,body:not([data-view="estate"]) #estateScene *{animation-play-state:paused!important}
+body[data-quality="low"] .gem.special:after,body[data-quality="low"] .estate-bird,body[data-quality="low"] .estate-butterfly,body[data-quality="low"] .estate-lamp-glow{animation:none}
+body[data-quality="low"] .estate-world{contain:layout style paint}
+@media(max-width:700px){.estate-grid{display:block}.estate-scene{aspect-ratio:1000/680}.estate-shell{padding:12px}.estate-head h2{font-size:26px}.estate-progress{margin-top:11px}.zone-map{gap:7px;padding-bottom:11px}.zone-card{flex-basis:130px;min-height:78px}.estate-task-card{margin-top:8px}.estate-tasks{max-height:none}.scene-badge{top:7px;left:7px;padding:5px 7px;font-size:8px}.design-options{gap:5px}.design-option{padding:5px}.design-option b{font-size:9px}.design-option small{font-size:8px}.cell{border-radius:7px}.combo{font-size:11px;padding:6px;left:12%;right:12%}.gem{filter:drop-shadow(0 2px 1px #00171aaa)}.estate-caption{font-size:9px}}
+@media(max-width:350px){.goals-panel:has(.goal-chip:nth-child(4)){grid-template-columns:repeat(3,minmax(0,1fr))}.goals-panel:has(.goal-chip:nth-child(4)) .goal-label-wrap{font-size:0;gap:0}.goals-panel:has(.goal-chip:nth-child(4)) .goal-art-icon{width:22px;height:22px}.scene-badge{font-size:7px}.goal-chip{padding:3px 4px}.goal-art-icon{width:22px;height:22px}.booster-btn{min-height:49px}.cell{border-radius:6px}}
+@media(orientation:landscape) and (max-height:520px){.combo{left:58%;right:4%;top:38%}.estate-head{gap:10px}.estate-scene{aspect-ratio:1000/680}.estate-grid{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(200px,1fr)}.estate-tasks{max-height:260px}.estate-task-card{margin-top:0}}
+@media(prefers-reduced-motion:reduce){.gem{transition:none}.estate-world *, .estate-world *:after{animation:none!important}.estate-clean-dust,.estate-renovation-glint,.garden-fx{display:none}.water-ripple{opacity:.35;transform:none}}
+
+body[data-quality="low"] :is(.pause-cover,.shop-modal,.daily-modal,.design-modal){backdrop-filter:none}
+
+/* Combo captions live beside the boosters, so the power-up remains visible. */
+.booster-head{position:relative}
+.booster-head .combo{top:50%;bottom:auto;left:100px;right:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;backdrop-filter:none;text-align:right;font-size:11px;line-height:1.2;transform:translateY(-50%);color:#ffe8a9;transition:none}
+.booster-head .combo.show{transform:translateY(-50%)}
+.booster-head:has(.combo.show) .booster-status{visibility:hidden}
+@media(orientation:landscape) and (max-height:520px){.booster-head .combo{left:85px;font-size:9px}}
+
+.estate-object:focus-visible .object-art,.estate-object.object-inspected .object-art{filter:brightness(1.07) drop-shadow(0 0 4px #ffe7a778)}
+.estate-object:focus-visible{outline:2px solid #ffe5a3;outline-offset:3px;border-radius:12px}
+.estate-inspect{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:1150;width:max-content;max-width:calc(100% - 24px);display:flex;align-items:center;gap:10px;padding:9px 10px 9px 13px;background:#123f35f2;border:1px solid #d9c68c99;border-radius:13px;box-shadow:0 5px 18px #001d3540;color:#fff4d4}
+.estate-inspect-copy{display:flex;flex-direction:column;gap:3px;min-width:0;max-width:230px}
+.estate-inspect-copy b{font-size:12px;line-height:1.2}.estate-inspect-copy small{font-size:10px;line-height:1.3;color:#d1dfc5}
+.estate-inspect-action{min-height:44px;min-width:64px;padding:7px 10px;font-size:11px;white-space:nowrap;background:#547653;border:1px solid #d6cb9199}
+.estate-inspect-close{align-self:center;flex-shrink:0;min-height:44px;min-width:36px;padding:0;font-size:21px;background:transparent;border:0;color:#e7e4c6}
+.scene-light-toggle{position:absolute;right:8px;top:7px;z-index:1100;min-height:44px;min-width:76px;padding:5px 10px;background:#13392dea;border:1px solid #dabd7788;border-radius:12px;font-size:11px;color:#fff0b5}
+.scene-light-toggle[aria-pressed="false"]{color:#d7e2d4;border-color:#c2d0b659}
+.estate-window-lights,.estate-lamp-glow,.estate-bulb{transition:opacity .9s ease}
+.composed-scene[data-lights-on="false"] :is(.estate-window-lights,.estate-lamp-glow,.estate-bulb){opacity:0!important;animation-play-state:paused}
+.tap-water-ripple{position:absolute;inset:0;border:1.5px solid #e1ffff;border-radius:50%;opacity:0;pointer-events:none}
+@media(max-width:700px){.estate-inspect{gap:6px;padding:7px 8px;bottom:8px}.estate-inspect-copy{max-width:155px}.estate-inspect-copy b{font-size:10px}.estate-inspect-copy small{font-size:9px}.estate-inspect-action{min-width:58px;padding:6px}.scene-badge{max-width:calc(100% - 94px)}.scene-light-toggle{font-size:10px;min-width:72px}}
+@media(prefers-reduced-motion:reduce){.estate-window-lights,.estate-lamp-glow,.estate-bulb{transition:none}}
