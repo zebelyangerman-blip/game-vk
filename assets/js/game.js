@@ -976,7 +976,10 @@ function trapFocus(e){const modal=[document.getElementById('tutorialHelp'),docum
           color=randType();guard++;
         }while(guard<60&&(
           (c>=2&&typeAt(b,idx(r,c-1))===color&&typeAt(b,idx(r,c-2))===color)||
-          (r>=2&&typeAt(b,idx(r-1,c))===color&&typeAt(b,idx(r-2,c))===color)
+          (r>=2&&typeAt(b,idx(r-1,c))===color&&typeAt(b,idx(r-2,c))===color)||
+          // A finished 2x2 square is a bomb recipe, so it cannot be dealt at level start.
+          (r>0&&c>0&&typeAt(b,idx(r-1,c-1))===color&&
+           typeAt(b,idx(r-1,c))===color&&typeAt(b,idx(r,c-1))===color)
         ));
         b[i]=makeGem(color);
       }
@@ -984,7 +987,7 @@ function trapFocus(e){const modal=[document.getElementById('tutorialHelp'),docum
         if(i>=0&&i<b.length&&!tiles[i].hole&&!tiles[i].crate&&!tiles[i].chain)b[i]=makeDrop();
       }
       board=b;
-      if(!findMatchGroups(board).length&&hasPossibleMove(board))return b;
+      if(!findMatchGroups(board).length&&!findSquareGroups(board).length&&hasPossibleMove(board))return b;
     }
     throw new Error('Не удалось создать игровое поле уровня');
   }
@@ -1016,8 +1019,19 @@ function trapFocus(e){const modal=[document.getElementById('tutorialHelp'),docum
     return groups;
   }
 
-// A square counts only when the swap CREATES it. Pre-existing 2x2 blocks
-// are harmless: they never explode during a cascade or on shuffle.
+// Initial boards and reshuffles must contain NO finished bonus recipes.
+// During play, squares are resolved only when a swap or a gravity/refill phase
+// creates them. Lines already cascade through findMatchGroups().
+function findSquareGroups(b=board){
+  const out=[];
+  for(let r=0;r<SIZE-1;r++)for(let c=0;c<SIZE-1;c++){
+    const at=[idx(r,c),idx(r,c+1),idx(r+1,c),idx(r+1,c+1)];
+    const type=typeAt(b,at[0]);
+    if(type!==null&&at.every(i=>typeAt(b,i)===type))
+      out.push({orientation:'square',type,indices:at});
+  }
+  return out;
+}
 function freshSquares(after,before,touched){
   if(!Array.isArray(touched)||!touched.length)return [];
   const out=[],seen=new Set();
@@ -1026,11 +1040,12 @@ function freshSquares(after,before,touched){
     for(let y=Math.max(0,r-1);y<=Math.min(SIZE-2,r);y++)
     for(let x=Math.max(0,c-1);x<=Math.min(SIZE-2,c);x++){
       const at=[idx(y,x),idx(y,x+1),idx(y+1,x),idx(y+1,x+1)];
-      const t=typeAt(after,at[0]);
-      if(t===null||!at.every(k=>typeAt(after,k)===t))continue;
-      if(at.every(k=>typeAt(before,k)===t))continue;
+      const type=typeAt(after,at[0]);
+      if(type===null||!at.every(k=>typeAt(after,k)===type))continue;
+      // A pre-existing identical 2x2 is not newly created by this phase.
+      if(at.every(k=>typeAt(before,k)===type))continue;
       const key=at.join(':');if(seen.has(key))continue;seen.add(key);
-      out.push({orientation:'square',type:t,indices:at});
+      out.push({orientation:'square',type,indices:at});
     }
   }
   return out;
@@ -1143,14 +1158,20 @@ function selectCell(i){
     return normal[Math.floor((normal.length-1)/2)];
   }
   function planSpecialCreations(groups,preferred=[]){
-    const creations=[],used=new Set(),consumedGroups=new Set();
-    const sorted5=groups.map((g,i)=>({g,i})).filter(x=>x.g.indices.length>=5).sort((a,b)=>b.g.indices.length-a.g.indices.length);
+    const creations=[],used=new Set(),claimed=new Set(),consumedGroups=new Set();
+    // One set of matched gems can earn only ONE power. Priority:
+    // five in a line > intersecting lines (T/L) > four in a line > square 2x2.
+    const free=indices=>indices.every(i=>!claimed.has(i));
+    const reserve=indices=>indices.forEach(i=>claimed.add(i));
+    const sorted5=groups.map((g,i)=>({g,i}))
+      .filter(x=>x.g.orientation!=='square'&&x.g.indices.length>=5)
+      .sort((a,b)=>b.g.indices.length-a.g.indices.length);
     for(const {g,i} of sorted5){
+      if(!free(g.indices))continue;
       const anchor=chooseAnchor(g.indices,preferred,used);
-      if(anchor!==null){
-        creations.push({index:anchor,type:null,special:SPECIAL.RAINBOW});
-        used.add(anchor);consumedGroups.add(i);
-      }
+      if(anchor===null)continue;
+      creations.push({index:anchor,type:null,special:SPECIAL.RAINBOW});
+      used.add(anchor);consumedGroups.add(i);reserve(g.indices);
     }
 
     const memberships=new Map();
@@ -1159,33 +1180,32 @@ function selectCell(i){
       memberships.get(i).push(gi);
     }));
     for(const [cell,gis] of memberships){
-      if(gis.some(i=>consumedGroups.has(i)))continue;
-      const hs=gis.filter(i=>groups[i].orientation==='h'),vs=gis.filter(i=>groups[i].orientation==='v');
+      const hs=gis.filter(i=>!consumedGroups.has(i)&&groups[i].orientation==='h');
+      const vs=gis.filter(i=>!consumedGroups.has(i)&&groups[i].orientation==='v');
       if(!hs.length||!vs.length)continue;
       const gh=groups[hs[0]],gv=groups[vs[0]];
       if(gh.type!==gv.type)continue;
       const union=[...new Set([...gh.indices,...gv.indices])];
+      if(!free(union))continue;
       const anchor=(!used.has(cell)&&canAnchor(cell)&&!board[cell].special)?cell:chooseAnchor(union,preferred,used);
-      if(anchor!==null){
-        creations.push({index:anchor,type:gh.type,special:SPECIAL.FIREFLY});
-        used.add(anchor);gis.forEach(i=>consumedGroups.add(i));
-      }
+      if(anchor===null)continue;
+      creations.push({index:anchor,type:gh.type,special:SPECIAL.FIREFLY});
+      used.add(anchor);reserve(union);hs.concat(vs).forEach(i=>consumedGroups.add(i));
     }
 
-
-groups.forEach((g,i)=>{
-  if(consumedGroups.has(i)||g.orientation!=='square')return;
-  const anchor=chooseAnchor(g.indices,preferred,used);
-  if(anchor===null)return;
-  creations.push({index:anchor,type:g.type,special:SPECIAL.BOMB});
-  used.add(anchor);consumedGroups.add(i);
-});
-groups.forEach((g,i)=>{
-  if(consumedGroups.has(i)||g.orientation==='square'||g.indices.length!==4)return;
+    groups.forEach((g,i)=>{
+      if(consumedGroups.has(i)||g.orientation==='square'||g.indices.length!==4||!free(g.indices))return;
       const anchor=chooseAnchor(g.indices,preferred,used);
       if(anchor===null)return;
       creations.push({index:anchor,type:g.type,special:g.orientation==='h'?SPECIAL.ROCKET_H:SPECIAL.ROCKET_V});
-      used.add(anchor);
+      used.add(anchor);reserve(g.indices);consumedGroups.add(i);
+    });
+    groups.forEach((g,i)=>{
+      if(consumedGroups.has(i)||g.orientation!=='square'||!free(g.indices))return;
+      const anchor=chooseAnchor(g.indices,preferred,used);
+      if(anchor===null)return;
+      creations.push({index:anchor,type:g.type,special:SPECIAL.BOMB});
+      used.add(anchor);reserve(g.indices);consumedGroups.add(i);
     });
     return creations;
   }
@@ -1447,6 +1467,7 @@ async function revealCreatedPowers(creations){
   }
 async function settleAfterClear(){
  const generation=motionGeneration;
+ const beforeGravity=board.slice();
  const old=new Map();board.forEach((g,i)=>{if(g)old.set(g,i);});collapse();
  let guard=0;while(collectExitedDrops()&&guard++<8)collapse();refill();render();
  let longest=0;const cell=boardEl.querySelector('.cell:not(.hole)'),pitch=(cell?.offsetHeight||40)+(parseFloat(getComputedStyle(boardEl).rowGap)||0);
@@ -1463,7 +1484,12 @@ async function settleAfterClear(){
    {transform:'translateY(0) scale(1)',opacity:1}
   ],{duration,delay,easing:'ease-out'});
  });
- await sleep(longest||45);if(generation!==motionGeneration)return;boardEl.dataset.cascade='1';sfx('land');
+ await sleep(longest||45);if(generation!==motionGeneration)return [];
+ boardEl.dataset.cascade='1';sfx('land');
+ // Gravity can form squares without a swap: these deserve the same bomb as
+ // a square the player built directly. Only cells changed in this fall count.
+ const changed=[];for(let i=0;i<board.length;i++)if(board[i]!==beforeGravity[i])changed.push(i);
+ return freshSquares(board,beforeGravity,changed);
 }
 
 
@@ -1473,10 +1499,11 @@ async function settleAfterClear(){
   if(chain>90)throw Error('Cascade safety limit');
   const creations=planSpecialCreations(groups,first?preferred:[]),protectedSet=new Set(creations.map(x=>x.index));await animateAndRemove(matchIndices(groups),chain,protectedSet);
   if(generation!==motionGeneration)return;
-  creations.forEach(x=>{x.piece=makeGem(x.type,x.special);board[x.index]=x.piece;});await settleAfterClear();if(generation!==motionGeneration)return;
+  creations.forEach(x=>{x.piece=makeGem(x.type,x.special);board[x.index]=x.piece;});
+  const fallingSquares=await settleAfterClear();if(generation!==motionGeneration)return;
   await revealCreatedPowers(creations);
   if(generation!==motionGeneration)return;
-  groups=findMatchGroups();chain++;first=false;
+  groups=[...findMatchGroups(),...fallingSquares];chain++;first=false;
  }
 }
 
@@ -1552,9 +1579,9 @@ if(hasFly){
     if(isRainbow(board[b]))board[b]={type:null,special:null};
     await animateAndRemove(initial,1,new Set(),label,presentation);
     if(generation!==motionGeneration)return;
-    await settleAfterClear();
+    const fallingSquares=await settleAfterClear();
     if(generation!==motionGeneration)return;
-    const groups=findMatchGroups();
+    const groups=[...findMatchGroups(),...fallingSquares];
     if(groups.length)await resolveMatches(groups,2,[]);
   }
 
@@ -1588,9 +1615,9 @@ if(hasFly){
       moves--;updateHud();
       await animateAndRemove([i],1,new Set(),label);
       if(generation!==motionGeneration)return;
-      await settleAfterClear();
+      const fallingSquares=await settleAfterClear();
       if(generation!==motionGeneration)return;
-      const groups=findMatchGroups();if(groups.length)await resolveMatches(groups,2,[]);
+      const groups=[...findMatchGroups(),...fallingSquares];if(groups.length)await resolveMatches(groups,2,[]);
       if(generation!==motionGeneration)return;
       if(tutorial?.active){tutorial.afterAction();return;}
       if(goalsComplete()){await sleep(150);finishLevel(true);}else if(moves<=0)finishLevel(false);else await ensurePlayable();
@@ -1646,7 +1673,7 @@ if(hasFly){
   // Recovery recolours normal gems only; powers, blockers and keys keep their rules.
   if(attempt>=600)pool.forEach(g=>{if(!g.special)g.type=randType();});
   indices.forEach((i,k)=>board[i]=pool[k]);
-  if(!findMatchGroups().length&&hasPossibleMove()){
+  if(!findMatchGroups().length&&!findSquareGroups().length&&hasPossibleMove()){
    selected=null;render();spawnArtFx('fx/energy_ring.png',null,Math.min(200,boardEl.clientWidth*.55),660);
    for(const i of indices){const p=cellPoint(i);playMotion(boardEl.querySelector('.cell[data-index="'+i+'"] .gem'),[{transform:`translate(${center.x-p.x}px,${center.y-p.y}px) scale(.25) rotate(-15deg)`,opacity:.6},{transform:'translate(0,0) scale(1.07)',opacity:1,offset:.8},{transform:'translate(0,0) scale(1)',opacity:1}],{duration:570,delay:i%8*12});}
    await sleep(680);return true;
@@ -1689,8 +1716,9 @@ if(hasFly){
  const backup=snapshotTurn(),count=stock[key];setBusy(true);
  try{
   if(!consumeBooster(key))return;let targets=key==='hammer'?[i]:key==='rocket'?rowsAround(rc(i)[0],0):squareAround(i,1);
-  sfx('booster');await animateAndRemove(targets,1,new Set(),BOOSTER_DEFS[key].name.toUpperCase(),{kind:'booster-'+key,pieces:[{i,g:null}]});await settleAfterClear();
-  const groups=findMatchGroups();if(groups.length)await resolveMatches(groups,2,[]);
+  sfx('booster');await animateAndRemove(targets,1,new Set(),BOOSTER_DEFS[key].name.toUpperCase(),{kind:'booster-'+key,pieces:[{i,g:null}]});
+  const fallingSquares=await settleAfterClear();
+  const groups=[...findMatchGroups(),...fallingSquares];if(groups.length)await resolveMatches(groups,2,[]);
   if(tutorial?.active){tutorial.afterAction();return;}
   lastConsumedEconomyOpId=null;
   if(goalsComplete())finishLevel(true);else if(moves<=0)finishLevel(false);else await ensurePlayable();
