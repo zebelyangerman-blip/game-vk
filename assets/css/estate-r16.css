@@ -1,0 +1,177 @@
+/* Lumina R16 — a single manor, portrait-first estate interface. */
+.manor-stage-panel {
+ display:flex;align-items:center;justify-content:space-between;gap:12px;
+ margin:10px 0 6px;padding:10px 13px;border:1px solid #f7da9570;border-radius:14px;
+ background:linear-gradient(105deg,#315950,#214c48 56%,#223d3c);box-shadow:inset 0 1px 1px #fff2ba2c,0 6px 17px #062b2b24;
+ color:#ffecba;font-size:12px;line-height:1.4;
+}
+#estateManorBadge{min-width:0;font-weight:700;text-wrap:pretty}
+.manor-steps{display:flex;flex-shrink:0;align-items:center;gap:4px}
+.manor-step{display:block;width:18px;height:8px;border-radius:999px;background:#18352f;border:1px solid #c3b47e77;transition:background .35s ease}
+.manor-step.achieved{background:linear-gradient(90deg,#b58d49,#ffe5a0);border-color:#ffe8aa}
+.manor-step.current{box-shadow:0 0 0 2px #f5d08552}
+.estate-scene-card{min-width:0}
+.estate-scene{background:#afc5ad;border-color:#e7d59c;box-shadow:0 12px 28px #021f2654,inset 0 0 0 2px #f6ebb56b}
+.estate-world{transition:transform .5s cubic-bezier(.2,.67,.18,1);transform-origin:50% 38%;will-change:transform}
+.estate-scene[data-zoom="true"] .estate-world{transform:scale(1.38)}
+.manor-object .object-art{aspect-ratio:840 / 680}
+.manor-object .object-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;filter:drop-shadow(0 4px 3px #071a1529)}
+.estate-object.manor-object.neglected .object-art{filter:none;opacity:1}
+.estate-object.manor-object.distant-object{opacity:.88;filter:none}
+.estate-object.manor-object:focus-visible .object-art,
+.estate-object.manor-object.object-inspected .object-art{filter:brightness(1.12) drop-shadow(0 0 6px #ffe2a588)}
+.estate-zoom-toggle{position:absolute;right:9px;bottom:9px;z-index:1120;min-height:42px;padding:8px 10px;border-radius:12px;background:#103e35ec;border:1px solid #ffe1a999;color:#fff2c8;font-size:11px;box-shadow:0 3px 10px #06272188;backdrop-filter:blur(3px)}
+.estate-zoom-toggle[aria-pressed="true"]{background:#6b633cfa;color:#fff9df}
+.r16-courtyard-engraving,.r16-old-garden{pointer-events:none}
+.r16-drifting-petal{animation:r16Petal 5s ease-in-out infinite}
+@keyframes r16Petal{0%,100%{transform:translate(0,0);opacity:.6}50%{transform:translate(4px,7px);opacity:.95}}
+.estate-tasks-toggle{display:none}
+.estate-task-card{border-color:#c0af7770;background:linear-gradient(153deg,#17493e,#103936 65%,#0e3532);box-shadow:inset 0 1px #e9d5a71d}
+.estate-task.available{background:linear-gradient(110deg,#607a4d,#315e4a);box-shadow:inset 0 1px #fff3b02c,0 5px 16px #00192133}
+.estate-task.available .task-copy b{color:#fff3c5}
+.estate-task.done .task-copy b{color:#c2eab8}
+.estate-tasks{scrollbar-color:#afbc85 #1a483f}
+.design-options.manor-style-options .design-option{
+ border:1px solid #c5b88970;background:linear-gradient(145deg,#21544c,#153936);border-radius:15px;padding:8px;
+}
+.design-options.manor-style-options .design-option.selected{background:linear-gradient(145deg,#3f6850,#2d5847);border-color:#ffe3a2;box-shadow:0 0 0 1px #ffe3a255,0 8px 19px #051f2b35}
+.design-options.manor-style-options .design-preview{aspect-ratio:1 / .82;margin:0 0 9px;border:1px solid #c8deb092;border-radius:11px;background:linear-gradient(#cceddc,#a2c6aa 65%,#7d9e64);position:relative;overflow:hidden}
+.r16-house-preview{position:absolute;inset:0;display:flex;justify-content:center;align-items:end}
+.r16-house-preview:before{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;background:linear-gradient(transparent,#4c8c5a55)}
+.r16-house-preview-img{position:relative;display:block;width:100%;height:95%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 4px 4px #0a2a2777)}
+.r16-house-preview-caption{position:absolute;bottom:6px;left:6px;padding:3px 7px;border:1px solid #ffe6ba7a;border-radius:10px;background:#10372bdf;color:#ffedc6;font-weight:700;font-size:10px;letter-spacing:.02em}
+.manor-style-options .design-option b{font-size:12px;color:#fff0c7;line-height:1.35}
+.manor-style-options .design-option small{font-size:9px;line-height:1.35;color:#d5e3c5}
+.manor-style-modal .design-dialog{max-width:880px;background:linear-gradient(144deg,#285b4f,#153c37);border:1px solid #dfc8898a;box-shadow:0 24px 85px #031c267a}
+@media (min-width:901px) {
+ .estate-grid{grid-template-columns:minmax(0,2.05fr) minmax(270px,1fr)}
+ .manor-stage-panel{font-size:13px;padding:12px 16px}
+ .manor-step{width:29px;height:9px}
+}
+@media(max-width:700px) {
+ .estate-shell{padding:10px}
+ .estate-head h2{font-size:24px;line-height:1.14}
+ .estate-head p{font-size:10px;line-height:1.38;margin-top:6px}
+ .estate-progress{margin-top:7px}
+ .estate-progress-bar{margin-top:5px}
+ .estate-world-head{margin-top:6px}
+ .zone-map{padding-bottom:7px;gap:6px}
+ .zone-card{min-height:66px;flex-basis:129px}
+ .manor-stage-panel{margin:6px 0 8px;align-items:start;flex-direction:column;gap:5px;padding:8px 10px;font-size:11px}
+ .manor-steps{width:100%;gap:4px}
+ .manor-step{height:6px;flex:1}
+ .estate-scene{aspect-ratio:1000 / 680}
+ .estate-zoom-toggle{min-height:41px;min-width:100px;font-size:10px;right:6px;bottom:6px;padding:6px 8px}
+ .estate-caption{padding:8px 3px}
+ .estate-task-card{padding:11px;border-radius:17px;margin-top:8px}
+ .estate-task-card h3{font-size:19px}
+ .estate-task-card p{font-size:10px;line-height:1.35}
+ .estate-tasks{overflow:visible;max-height:none;gap:7px;margin:9px 0}
+ .estate-task:not(.available):not(.final-visible){display:none}
+ .estate-tasks.expanded .estate-task{display:grid}
+ .estate-tasks-toggle{display:block;order:99;min-height:42px;margin-top:3px;border-radius:12px;border:1px solid #c7bb8482;background:#224c43;color:#f4eacb;font-size:12px;font-weight:700}
+ .estate-task{min-height:60px}
+ .task-copy b{font-size:12px}
+ .task-copy small{font-size:10px}
+ .manor-style-options.design-options{grid-template-columns:none;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(208px,76%);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;gap:11px;padding:5px 3px 12px}
+ .manor-style-options .design-option{scroll-snap-align:center;min-width:0;min-height:0}
+ .manor-style-options .design-option .design-preview{aspect-ratio:1.25!important}
+ .manor-style-options .design-option b{font-size:13px}
+ .manor-style-options .design-option small{font-size:10px}
+ .design-dialog{max-width:100%}
+}
+/* Mobile estate puts the spectacle before the long chapter navigation. */
+@media(max-width:700px){
+ .estate-shell{display:flex;flex-direction:column}
+ .estate-head{order:1;display:block}
+ .estate-head h2{margin:7px 0 0}
+ .estate-head p{display:none}
+ .estate-progress{margin-top:7px}
+ .estate-progress small{font-size:9px;margin-bottom:2px}
+ .estate-progress strong{font-size:15px;line-height:1.25}
+ .manor-stage-panel{order:2}
+ .estate-grid{order:3}
+ .estate-world-head{order:4;margin-top:16px}
+ .zone-map{order:5}
+}
+@media(max-width:350px){
+ .manor-stage-panel{font-size:10px}
+ .manor-style-options.design-options{grid-auto-columns:83%}
+ .estate-zoom-toggle{min-width:86px}
+ .scene-badge{max-width:calc(100% - 93px)}
+}
+@media(prefers-reduced-motion:reduce){.estate-world,.manor-step{transition:none!important}.r16-drifting-petal{animation:none!important}}
+body.system-paused .r16-drifting-petal{animation-play-state:paused}
+
+/* Zoom into the old garden's distant manor instead of cropping it out. */
+.estate-scene:is([data-zone="2"],[data-zone="7"],[data-zone="8"],[data-zone="9"])[data-zoom="true"] .estate-world{transform-origin:76% 36%;transform:scale(1.75)}
+
+
+/* R18 final composition: the player sees the entire property, never a text card over the garden. */
+.estate-caption{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:6px;align-items:center;padding:11px 3px 7px;line-height:1.3}
+.estate-caption #estateCaption{font-size:12px;font-weight:700;color:#ebead0;min-width:0}
+.estate-caption #estateHint{font-size:12px;color:#ffdf9b;text-align:right}
+.estate-caption .scene-note{position:static;inset:auto;display:flex;flex-direction:column;gap:2px;grid-column:1;grid-row:2;width:auto;max-width:none;margin:0;padding:0;border:0;box-shadow:none;backdrop-filter:none;background:none;color:#dce8d6}
+.estate-caption .scene-note strong{color:#f7d995;font-size:11px;line-height:1.2}
+.estate-caption .scene-note span{color:#d4e0d3;font-size:11px;line-height:1.3}
+.estate-caption .estate-zoom-toggle{position:static;inset:auto;grid-column:2;grid-row:2;min-width:114px;min-height:44px;font-size:11px;margin:0;padding:9px 10px}
+/* Second gate treatment is still a complete gate, never a fence post. */
+.object-gate[data-style="2"] .object-art img{filter:sepia(.58) saturate(1.28) hue-rotate(348deg) brightness(1.12) contrast(1.08)}
+.estate-scene[data-zone="2"] .estate-backdrop{filter:saturate(1.1) brightness(1.035)}
+.estate-scene[data-zone="3"] .estate-backdrop{filter:saturate(1.06) contrast(1.015)}
+.estate-scene[data-zone="4"] .estate-backdrop{filter:saturate(.96) sepia(.06) brightness(1.01)}
+.estate-scene[data-zone="5"] .estate-backdrop{filter:saturate(1.04) hue-rotate(2deg) brightness(1.03)}
+.estate-scene[data-zone="6"] .estate-backdrop{filter:saturate(1.08) sepia(.04) brightness(1.04)}
+.estate-scene[data-zone="7"] .estate-backdrop{filter:saturate(1.15) hue-rotate(3deg) brightness(1.02)}
+.estate-scene[data-zone="8"] .estate-backdrop{filter:saturate(.92) sepia(.1) brightness(.88)}
+.estate-scene[data-zone="9"] .estate-backdrop{filter:saturate(1.16) contrast(1.025)}
+.estate-scene[data-zone="10"] .estate-backdrop{filter:saturate(1.09) brightness(1.045)}
+@media(max-width:700px){
+ .estate-caption{padding:9px 3px 5px;column-gap:8px;row-gap:7px}
+ .estate-caption #estateCaption,.estate-caption #estateHint{font-size:11px}
+ .estate-caption .scene-note strong{font-size:11px}
+ .estate-caption .scene-note span{font-size:10px}
+ .estate-caption .estate-zoom-toggle{min-width:112px;min-height:43px;font-size:10px;padding:6px 8px}
+ /* Prioritize the art before the long stage display, especially in short VK iframes. */
+ .estate-head{order:1}.estate-grid{order:2}.manor-stage-panel{order:3;margin:7px 0 5px}
+ .estate-world-head{order:4}.zone-map{order:5}
+ .estate-head h2{font-size:23px;line-height:1.15;margin:4px 0 0}
+ .estate-progress{margin-top:5px}.estate-progress-bar{margin-top:4px}
+ .estate-progress strong{font-size:15px;line-height:1.1}
+}
+@media(max-width:350px){
+ .estate-caption{column-gap:6px}
+ .estate-caption .estate-zoom-toggle{min-width:102px}
+ .estate-caption #estateHint{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.estate-caption .scene-note,.estate-caption .estate-zoom-toggle{transition:none!important}}
+
+/* R18 tighter caption: the zone title is already in the heading and on the scene. */
+.estate-caption #estateCaption{display:none}
+.estate-caption #estateHint{grid-column:1/-1;grid-row:1;text-align:left}
+.estate-caption .scene-note strong{display:none}
+
+/* R18 mobile utility access: purchasing boosts and daily gifts must not be buried in Settings. */
+.mobile-economy-actions{display:none}
+@media(max-width:700px){
+ .mobile-economy-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:7px}
+ .mobile-economy-actions button{min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;min-height:43px;border:1px solid #d8c38f80;background:linear-gradient(125deg,#386c5b,#255344);color:#ffefce;font-size:12px;font-weight:700;border-radius:12px}
+ .mobile-economy-actions button img{height:22px;width:22px;object-fit:contain}
+ .mobile-economy-actions button.ready{border-color:#ffe6a7;background:linear-gradient(120deg,#6d7340,#466e4a);box-shadow:0 0 0 1px #ffe6a72b}
+ .mobile-economy-actions button:disabled{opacity:.48}
+}
+
+/* R18.3 touch accessibility: the settings hit target is at least 44x44 CSS px
+   even on the narrowest portrait WebView. The bright board art is unchanged. */
+@media(max-width:700px){
+ .topbar .top-actions #settingsBtn{width:44px;min-width:44px;height:44px;min-height:44px;padding:10px;flex:0 0 44px;touch-action:manipulation}
+ .topbar .top-actions{gap:3px}
+ .topbar .token-pill,.topbar .coin-pill{padding:4px 5px}
+ .topbar .brand-logo{max-width:91px}
+}
+@media(max-width:350px){
+ .topbar{grid-template-columns:86px minmax(0,1fr)}
+ .topbar .brand-logo{width:86px;max-width:86px}
+ .topbar .top-actions{gap:2px}
+ .topbar .token-pill,.topbar .coin-pill{padding:4px 3px;min-width:0}
+}
