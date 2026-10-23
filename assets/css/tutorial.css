@@ -1,0 +1,115 @@
+/* The coach lives beside or above the board and never covers a playing cell. */
+.tutorial-panel{min-width:0;padding:15px;background:#102f2ede;border:1px solid #d5c28a66;border-radius:16px;outline:none}
+.tutorial-kicker{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#dcd9b4;font-size:12px;line-height:1.3}
+.tutorial-kicker span:last-child{color:#bad0c1;font-size:11px}
+.tutorial-title{margin:9px 0 8px;font-size:23px;line-height:1.18;color:#ffe8af}
+.tutorial-copy{font-size:15px;line-height:1.5;color:#f0f0dd}
+.tutorial-action{display:flex;align-items:center;justify-content:center;gap:14px;margin:15px 0 10px}
+.tutorial-example{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;color:#e9e5c6;text-align:center}
+.tutorial-example img{width:49px;height:49px;object-fit:contain;filter:drop-shadow(0 2px 2px #001b24)}
+.tutorial-example-arrow{font-size:24px;color:#f5d991}
+.tutorial-feedback{padding-top:11px;margin-top:9px;border-top:1px solid #80aa803d;font-size:13px;line-height:1.45;min-height:49px;color:#b8d6c5}
+.tutorial-feedback.success{color:#cbf1b9}.tutorial-feedback.needs-action{color:#ffddaa}
+.tutorial-footer{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tutorial-next{flex:1 1 100%;min-height:46px;padding:9px 14px;font-size:14px;background:linear-gradient(#e5d99f,#cdbd78);color:#183d34;border-color:#f0deaa;line-height:1.2;font-weight:bold}
+.tutorial-next:disabled{opacity:.72;background:#274b43;color:#b9cbb7;border-color:#6d978569}
+.tutorial-link{flex:1;min-height:44px;padding:6px 8px;font-size:12px;background:transparent;color:#e0dfbd;border-color:#94ad8060}
+body[data-tutorial="true"] .layout{display:block;max-width:1000px;margin:auto}
+body[data-tutorial="true"] .side,body[data-tutorial="true"] .topbar .view-tabs,body[data-tutorial="true"] .top-actions>:not(#settingsBtn){display:none}
+body[data-tutorial="true"] .topbar{display:flex;justify-content:space-between;min-height:47px;margin-bottom:8px;padding-bottom:6px;gap:12px}
+body[data-tutorial="true"] .brand-logo{width:105px;height:48px}
+body[data-tutorial="true"] .top-actions{margin-left:auto}
+body[data-tutorial="true"] .game-card{display:grid;grid-template-columns:minmax(220px,1fr) minmax(260px,.74fr);grid-template-rows:auto auto auto 1fr auto;gap:8px 24px;padding:17px}
+body[data-tutorial="true"] .level-heading{grid-column:1;grid-row:1;min-height:22px}
+body[data-tutorial="true"] .level-heading strong{font-size:16px}
+body[data-tutorial="true"] .hud{grid-column:1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr))}
+body[data-tutorial="true"] .hud .stat:first-child,body[data-tutorial="true"] .hud .stat:last-child{display:none}
+body[data-tutorial="true"] .hud .stat{padding:7px 10px}
+body[data-tutorial="true"] .hud .stat small{font-size:11px}
+body[data-tutorial="true"] .hud .stat strong{font-size:21px}
+body[data-tutorial="true"] .goals-panel{grid-column:1;grid-row:3;grid-template-columns:1fr}
+body[data-tutorial="true"] .goal-top{font-size:11px}
+body[data-tutorial="true"] .goal-art-icon{width:23px;height:23px}
+body[data-tutorial="true"] .goal-value{font-size:12px}
+body[data-tutorial="true"] .board-wrap{grid-column:1;grid-row:4;justify-self:center;align-self:start}
+body[data-tutorial="true"] .booster-dock{display:none;grid-column:1;grid-row:5}
+body[data-tutorial-kind="booster"] .booster-dock{display:block}
+body[data-tutorial-kind="booster"] .booster-head{display:none}
+body[data-tutorial-kind="booster"] .booster-grid{display:block;text-align:center}
+body[data-tutorial-kind="booster"] .booster-btn{display:none}
+body[data-tutorial-kind="booster"] .booster-btn[data-booster="hammer"]{display:inline-flex;flex-direction:row;align-items:center;justify-content:center;gap:9px;width:100%;max-width:260px;min-height:49px;padding:5px 18px}
+body[data-tutorial-kind="booster"] .booster-name{font-size:13px}
+body[data-tutorial-kind="booster"] .booster-icon{height:35px;width:35px}
+body[data-tutorial-kind="booster"] .booster-count{font-size:11px}
+body[data-tutorial="true"] .tutorial-panel{grid-column:2;grid-row:1/5;align-self:start}
+body[data-tutorial="true"] .tutorial-footer{grid-column:2;grid-row:5;align-self:end}
+body[data-tutorial="true"] .board{grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(5,minmax(0,1fr));gap:4px;padding:6px}
+body[data-tutorial="true"] .cell.hole{display:none}
+body[data-tutorial="true"] .cell.tutorial-muted .gem,body[data-tutorial="true"] .cell.tutorial-muted .obstacle{opacity:.6}
+body[data-tutorial="true"] .cell.tutorial-target{outline:2px solid #ffe598;outline-offset:-2px;background:#43634a;z-index:6}
+body[data-tutorial="true"] .cell.tutorial-target:after{content:attr(data-lesson-marker);position:absolute;top:0;left:0;display:grid;place-items:center;width:20px;height:20px;border-radius:0 0 8px 0;background:#ffe49c;color:#173a31;font-size:12px;font-weight:bold;line-height:1;z-index:10;pointer-events:none}
+body[data-tutorial="true"] .cell.tutorial-focus{box-shadow:inset 0 0 0 2px #89ddd0;background:#24574b}
+body[data-tutorial="true"] .cell.tutorial-focus .gem,body[data-tutorial="true"] .cell.tutorial-focus .obstacle{opacity:1}
+.tutorial-booster-target{outline:2px solid #ffe598;outline-offset:2px}
+.tutorial-help-modal{position:fixed;inset:0;z-index:130;display:flex;justify-content:center;align-items:center;background:#041d25c7;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+.tutorial-help-dialog{width:620px;max-width:100%;max-height:calc(100dvh - 30px);overflow:auto;padding:20px;background:linear-gradient(135deg,#27584a,#123a38);border:1px solid #caba7a80;border-radius:20px;box-shadow:0 18px 60px #00141a80}
+.tutorial-help-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.tutorial-help-head h3{font-size:25px}.tutorial-help-head button{min-width:44px;min-height:44px;font-size:24px;background:#153d36}
+.tutorial-help-body details{border:1px solid #8fbb8644;border-radius:10px;background:#102f2b70;margin-top:9px}
+.tutorial-help-body summary{padding:13px 15px;font-weight:bold;font-size:15px;cursor:pointer;color:#ffe4a7}
+.tutorial-help-body p{margin:0 15px 13px;font-size:14px;line-height:1.55;color:#e0e9d7}.tutorial-help-body details:first-child{margin-top:0}
+#settingsTutorial,#settingsRules{min-height:44px;font-size:13px}
+@media(max-width:700px) and (orientation:portrait){
+ body[data-tutorial="true"] .app{padding:6px 10px max(10px,env(safe-area-inset-bottom))}
+ body[data-tutorial="true"] .topbar{min-height:39px;margin-bottom:6px;padding-bottom:4px}
+ body[data-tutorial="true"] .brand-logo{width:88px;height:39px}
+ body[data-tutorial="true"] .game-card{grid-template-columns:90px minmax(0,1fr);grid-template-rows:auto auto auto auto auto;padding:10px;gap:6px}
+ body[data-tutorial="true"] .tutorial-panel{padding:10px;border-radius:12px;grid-column:1/-1;grid-row:1}
+ body[data-tutorial="true"] .level-heading{display:none}
+ body[data-tutorial="true"] .hud{grid-column:1;grid-row:2;display:block}body[data-tutorial="true"] .hud .stat{padding:5px 9px;min-height:32px}
+ body[data-tutorial="true"] .hud .stat:nth-child(2){display:none}
+ body[data-tutorial="true"] .goals-panel{grid-column:2;grid-row:2}
+ body[data-tutorial="true"] .board-wrap{grid-column:1/-1;grid-row:3;align-self:center}
+ body[data-tutorial="true"] .booster-dock{grid-column:1/-1;grid-row:4}
+ body[data-tutorial="true"] .tutorial-footer{grid-column:1/-1;grid-row:5;gap:5px}
+ .tutorial-kicker{font-size:11px}.tutorial-kicker span:last-child{font-size:10px}
+ .tutorial-title{font-size:19px;margin:6px 0}.tutorial-copy{font-size:13px;line-height:1.4}
+ .tutorial-action{margin:8px 0 0;gap:12px}.tutorial-example{flex-direction:row;gap:4px;font-size:11px}.tutorial-example img{width:28px;height:28px}
+ .tutorial-example-arrow{font-size:18px}
+ .tutorial-feedback{font-size:12px;line-height:1.35;margin-top:6px;padding-top:6px;min-height:0}
+ .tutorial-next{flex-basis:auto;flex-grow:2;min-height:44px;font-size:12px;padding:7px 9px}
+ .tutorial-link{flex:0 0 auto;min-height:44px;font-size:11px;padding:6px 7px}
+ body[data-tutorial="true"] .board{gap:3px;padding:4px}
+ body[data-tutorial="true"] .goal-chip{padding:3px 7px}body[data-tutorial="true"] .goal-bar{display:none}
+ .tutorial-help-dialog{padding:14px}.tutorial-help-head h3{font-size:22px}
+}
+@media(orientation:landscape) and (max-height:520px){
+ body[data-tutorial="true"] .app{padding:4px 10px max(6px,env(safe-area-inset-bottom))}
+ body[data-tutorial="true"] .topbar{min-height:30px;margin-bottom:5px;padding-bottom:2px}
+ body[data-tutorial="true"] .brand-logo{width:73px;height:30px}
+ body[data-tutorial="true"] .game-card{grid-template-columns:minmax(175px,.9fr) minmax(270px,1.1fr);grid-template-rows:auto auto 1fr auto;gap:5px 16px;padding:8px 12px}
+ body[data-tutorial="true"] .level-heading{display:none}
+ body[data-tutorial="true"] .hud{grid-row:1}
+ body[data-tutorial="true"] .goals-panel{grid-row:2}
+ body[data-tutorial="true"] .board-wrap{grid-row:3;align-self:start}
+ body[data-tutorial="true"] .booster-dock{grid-row:4}
+ body[data-tutorial="true"] .tutorial-panel{grid-row:1/4;padding:10px}
+ body[data-tutorial="true"] .tutorial-footer{grid-row:4}
+ .tutorial-title{font-size:18px;margin:5px 0}.tutorial-copy{font-size:13px;line-height:1.4}
+ .tutorial-action{margin:8px 0 0}.tutorial-example{flex-direction:row;font-size:11px}.tutorial-example img{width:30px;height:30px}
+ .tutorial-feedback{margin-top:7px;padding-top:7px;font-size:12px;min-height:0}
+ .tutorial-next{flex-basis:auto;min-height:44px;font-size:12px}.tutorial-link{flex:0 0 auto;min-height:44px;font-size:11px}
+ body[data-tutorial-kind="booster"] .booster-btn[data-booster="hammer"]{min-height:44px;height:44px}
+}
+@media(orientation:landscape) and (max-height:350px){
+ body[data-tutorial="true"] .game-card{grid-template-rows:auto 1fr auto}
+ body[data-tutorial="true"] .hud{display:none}
+ body[data-tutorial="true"] .goals-panel{grid-row:1}
+ body[data-tutorial="true"] .board-wrap{grid-row:2}
+ body[data-tutorial="true"] .booster-dock,body[data-tutorial="true"] .tutorial-footer{grid-row:3}
+ body[data-tutorial="true"] .tutorial-panel{grid-row:1/3}
+}
+
+body[data-tutorial="true"][data-tutorial-kind="summary"] .game-card{display:flex;flex-direction:column;max-width:640px;margin:auto}
+body[data-tutorial="true"][data-tutorial-kind="summary"] .board-wrap,body[data-tutorial="true"][data-tutorial-kind="summary"] .hud,body[data-tutorial="true"][data-tutorial-kind="summary"] .goals-panel,body[data-tutorial="true"][data-tutorial-kind="summary"] .level-heading{display:none}
+body[data-tutorial="true"][data-tutorial-kind="summary"] .tutorial-panel,body[data-tutorial="true"][data-tutorial-kind="summary"] .tutorial-footer{width:100%}

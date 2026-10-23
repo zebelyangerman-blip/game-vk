@@ -1,0 +1,174 @@
+/* GEM GARDEN — Lumina pass. Standalone layer: base styles remain intact.
+   Bright board first; hierarchy, hit affordances, reduced-motion support. */
+:root {
+  --gold: #ffe59e;
+  --muted: #d7eadf;
+  --ink: #fff8e7;
+}
+body {
+  background:
+    radial-gradient(ellipse 46% 35% at 15% 3%, #419f8b7a 0%, transparent 72%),
+    radial-gradient(ellipse 32% 45% at 89% 24%, #2db6c047 0%, transparent 80%),
+    radial-gradient(ellipse 40% 30% at 70% 100%, #458d7f66 0%, transparent 85%),
+    linear-gradient(160deg,#164a51 0%,#0a3447 48%,#08222f 100%);
+  color: #f5ffee;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.35;
+  background-image:radial-gradient(2px 2px at 10% 23%, #c9fff1 75%, transparent),
+    radial-gradient(2px 2px at 83% 19%, #ffe8a5 70%, transparent),
+    radial-gradient(3px 3px at 76% 78%, #89eee0 70%, transparent),
+    radial-gradient(2px 2px at 25% 81%, #ffd9af 70%, transparent);
+  background-size:410px 350px; z-index:-1;
+}
+.topbar {border-bottom-color:#c4f1c354;}
+.view-tab {border-radius:13px;color:#d8eee7;text-shadow:0 1px 2px #041b2030;}
+.view-tab.active {background:linear-gradient(155deg,#75bd83,#286d64);border:1px solid #b4ebbeaa;color:#fff6c7;box-shadow:0 5px 14px #041d263f,inset 0 1px 1px #f5ffe78a;}
+.game-card,.side-card,.campaign-card,.estate-shell {
+  background:linear-gradient(158deg,#357e6d 0%,#27685c 21%,#194d4f 63%,#123a46 100%);
+  border:1px solid #caeda17a;
+  box-shadow:inset 0 1px 1px #f4ffe656,0 16px 38px #001b285a,0 0 40px #8ced9e16;
+}
+.game-card {isolation:isolate;}
+.level-heading strong {color:#fff5c9;text-shadow:0 2px 5px #002d3a7a;letter-spacing:.15px;}
+.level-heading button {background:linear-gradient(#77ab8d,#306d66);border:1px solid #e8f4c780;color:#fff5cd;box-shadow:inset 0 1px #f7ffe577,0 3px 5px #00302b88;}
+.hud {gap:8px;}
+.stat {border:1px solid #d6f5c45d;background:linear-gradient(155deg,#235764,#17404e);box-shadow:inset 0 1px #e5ffe53a,0 4px 10px #00222b36;}
+.stat:nth-child(1) {background:linear-gradient(140deg,#3a8090,#1a5469);}
+.stat:nth-child(2) {background:linear-gradient(140deg,#41887e,#1b5864);}
+.stat:nth-child(4) {background:linear-gradient(140deg,#517784,#24536a);}
+.stat small {color:#e1f8ee;font-size:11px;line-height:1.2;font-weight:600;}
+.stat strong {color:#fff6ce;text-shadow:0 2px 4px #002d3d8a;}
+.stat.moves {border-color:#fff2bc;background:linear-gradient(140deg,#fff3be,#f3c16e 70%,#eaa252);box-shadow:0 0 13px #ffdd8170,inset 0 1px #fffef6;}
+.stat.moves small,.stat.moves strong {color:#22514b;text-shadow:none;}
+.stat.low-moves {background:linear-gradient(145deg,#fff4bd,#ffad7d);}
+.goal-chip {background:linear-gradient(135deg,#153f50,#103341);border:1px solid #a4e1bc66;box-shadow:inset 0 1px #e3ffde1a;}
+.goal-chip.done {background:linear-gradient(140deg,#407b4c,#315d55);border-color:#b7ec9a;}
+.goal-label-wrap {color:#effff4;font-size:12px;line-height:1.2;}
+.goal-art-icon {filter:drop-shadow(0 2px 2px #0005);}
+.goal-bar {height:4px;background:#051c2799;}
+.board {
+  background:
+    radial-gradient(ellipse at 25% 16%,#8ce5a57d,transparent 52%),
+    linear-gradient(140deg,#3b9f92,#24726e 57%,#154e60);
+  border:3px solid #ffdf8b;
+  box-shadow:0 0 0 3px #073e4d,0 0 0 5px #eebf665c,
+    inset 0 2px 3px #f3ffe777,inset 0 -6px 14px #031e377a,
+    0 16px 24px #001e2c70,0 0 25px #ffdd7c2f;
+}
+.cell {
+  background:linear-gradient(140deg,#357e7a,#1b5965);
+  border:1px solid #c1f0d14c;
+  box-shadow:inset 0 1px 2px #e3fff33d,inset 0 -2px 4px #05323c5a;
+}
+.cell:nth-child(odd) {background:linear-gradient(140deg,#377e83,#245e6c);}
+.cell:nth-child(even) {background:linear-gradient(145deg,#3c9185,#206470);}
+.cell.selected,.cell.selected[data-tap-power="true"] {background:linear-gradient(155deg,#78b989,#3a8c80);box-shadow:inset 0 0 0 2px #fff6c8,0 0 15px #ffe89aae;}
+.cell.matching {background:radial-gradient(ellipse,#ffeca983,#39968155);}
+.cell.fx-charging {background:radial-gradient(ellipse,#ffe5a09a,#47a58c55);}
+.cell.hole {background:#092c36;box-shadow:inset 0 5px 10px #001e2a;}
+.gem {inset:2.5%;filter:drop-shadow(0 4px 2px #082936ad) drop-shadow(0 0 3px #a7ffff52);}
+.gem.special {inset:0%;filter:drop-shadow(0 2px 3px #001e32af) drop-shadow(0 0 6px #ffe69ba8);}
+.gem.special:after {opacity:.20;animation:specialShine 3.2s ease-in-out infinite;}
+.gem.special.firefly {filter:drop-shadow(0 2px 3px #0c344c) drop-shadow(0 0 8px #fff3a3);}
+.gem.special.firefly:after {opacity:.14;animation:fireflyPulse 1.65s ease-in-out infinite;}
+@keyframes fireflyPulse {0%,100%{opacity:.12;transform:scale(.96)}50%{opacity:.49;transform:scale(1.09)}}
+.booster-head {color:#f4f7d5;font-size:12px;font-weight:700;}
+.booster-status {color:#dbf4e9;font-size:11px;}
+.booster-grid {gap:8px;}
+.booster-btn {
+  background:linear-gradient(155deg,#67ab8b,#347c77 62%,#236468);
+  border:1px solid #cceeb18f;
+  box-shadow:inset 0 1px #ecffe887,0 4px 8px #052b388a;
+  transition:filter .14s,box-shadow .14s,transform .14s;
+}
+.booster-btn:not(:disabled):active {transform:translateY(2px);}
+.booster-btn:not(:disabled):hover {filter:brightness(1.14);box-shadow:inset 0 1px #ecffe887,0 0 15px #a3fad48c;}
+.booster-btn.active {background:linear-gradient(#b9d9a3,#4eae91);border-color:#fff1b1;box-shadow:0 0 18px #ffe7a59c;}
+.booster-name {color:#fffde4;font-size:11px;font-weight:650;text-shadow:0 1px 2px #153b3baa;}
+.booster-count {background:#143a45;border:1px solid #ffe4a6;color:#fff6cd;font-size:11px;font-weight:700;box-shadow:0 1px 4px #001c2799;}
+.booster-icon img {filter:drop-shadow(0 2px 2px #14333d66);}
+.booster-head .combo {max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+/* Big special-name banner anchored to the board, independent of booster caption. */
+.power-announcement {
+  position:absolute;left:7%;right:7%;top:8%;z-index:29;pointer-events:none;
+  color:#fffad8;text-align:center;font-weight:900;font-size:clamp(15px,2.15vw,26px);
+  line-height:1.08;letter-spacing:.7px;text-transform:uppercase;
+  padding:10px 9px;border-radius:18px;
+  background:linear-gradient(100deg,#185f72e8,#225e8dea 35%,#317d74e9 68%,#1b576bea);
+  border:2px solid #ffe4a8dd;
+  box-shadow:0 0 0 2px #145b7180,0 0 24px #ffe59a83,0 7px 20px #021e397a;
+  text-shadow:0 2px 4px #1b3868,0 0 11px #ffd685;
+  opacity:0;transform:translateY(12px) scale(.83);visibility:hidden;
+}
+.power-announcement.show {visibility:visible;animation:powerAnnounce 1.85s cubic-bezier(.18,.75,.3,1) both;}
+@keyframes powerAnnounce {
+  0% {opacity:0;transform:translateY(16px) scale(.72);filter:brightness(1.5)}
+  13% {opacity:1;transform:translateY(0) scale(1.06);filter:brightness(1.25)}
+  25%,66% {opacity:1;transform:translateY(0) scale(1);filter:brightness(1)}
+  100% {opacity:0;transform:translateY(-16px) scale(.97);visibility:hidden}
+}
+.primary,.secondary {font-size:13px;}
+.primary {background:linear-gradient(#fff4c3,#f4d383 58%,#ecb765);border:1px solid #f8e5a4;box-shadow:inset 0 1px #fffefa,0 4px 10px #08262988;}
+.result p,.result-goal {font-size:12px;}
+.side p {font-size:12px;line-height:1.5;}
+.side-card {background:linear-gradient(155deg,#317568,#194d5d);}
+/* Compact screens: legibility first, maintain board size using existing fitBoard(). */
+@media (max-width:700px) {
+  .game-card {background:linear-gradient(160deg,#347b70 0%,#1f6663 55%,#194651 100%);}
+  .hud {gap:5px;}
+  .stat {padding:6px 6px;}
+  .stat small {font-size:10px;}
+  .stat strong {font-size:22px;}
+  .goal-chip {padding:5px 6px;}
+  .goal-label-wrap {font-size:11px;}
+  .booster-head {font-size:11px;}
+  .booster-status {font-size:10px;}
+  .booster-grid {gap:5px;}
+  .booster-btn {padding:5px 1px;min-height:56px;}
+  .booster-name {font-size:10px;}
+  .booster-count {font-size:10px;}
+  .booster-icon {width:35px;height:29px;}
+  .power-announcement {top:8%;left:5%;right:5%;font-size:clamp(14px,4vw,20px);padding:8px 6px;border-radius:12px;}
+  .result h2 {font-size:23px;}
+  .result p,.result-goal {font-size:11px;}
+  .result-actions button {font-size:12px;min-height:40px;}
+}
+@media (max-width:350px) {
+  .stat small {font-size:10px;}
+  .stat strong {font-size:19px;}
+  .goal-label-wrap {font-size:10px;}
+  .booster-name {font-size:10px;}
+  .booster-btn {min-height:49px;}
+  .power-announcement {font-size:13px;}
+}
+@media (orientation:landscape) and (max-height:520px) {
+  .stat small {font-size:10px;}
+  .stat strong {font-size:20px;}
+  .booster-head {font-size:11px;}
+  .booster-name {font-size:10px;}
+  .booster-btn {min-height:49px;}
+  .power-announcement {top:5%;font-size:clamp(13px,2vw,18px);}
+}
+
+/* On mid-size portrait phones the three-digit level number must stay inside its HUD tile.
+   Keep the full accessible label in HTML; shorten only the painted caption. */
+@media (min-width:351px) and (max-width:430px) and (orientation:portrait) {
+  .hud .stat:first-child small {font-size:0;white-space:nowrap}
+  .hud .stat:first-child small::after {content:"Ур.";font-size:10px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .power-announcement.show {animation:none;opacity:1;transform:none;visibility:visible;}
+  .gem.special.firefly:after {animation:none;opacity:.18;}
+  .booster-btn {transition:none;}
+}
+/* 320–350px portrait: prioritise full numeric labels and uncut objectives. */
+@media (max-width:350px) and (orientation:portrait) {
+  .hud .stat {flex-direction:column;justify-content:center;align-items:center;gap:1px;min-height:43px;padding:4px 2px;}
+  .hud .stat small {font-size:9px;line-height:1.05;text-align:center;white-space:normal;}
+  .hud .stat strong {font-size:19px;line-height:1.05;letter-spacing:-.4px;white-space:nowrap;}
+  .goals-panel .goal-chip {padding:4px 3px;}
+  .goals-panel .goal-label-wrap {font-size:10px;gap:0;}
+  .goals-panel .goal-art-icon {display:none;}
+  .goals-panel .goal-value {font-size:10px;}
+}

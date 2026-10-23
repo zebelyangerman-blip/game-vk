@@ -1,0 +1,17 @@
+/* Rewarded ad section stays inside the existing, scrollable shop modal. */
+.garden-ad-offer { margin-top: 18px; padding: 14px 16px; background: #12392f;
+  border: 1px solid #abbd7780; border-radius: 15px; display: grid; gap: 7px; }
+.garden-ad-offer[hidden] { display: none !important; }
+.garden-ad-offer strong { color: #f2de9c; font-size: 14px; }
+.garden-ad-offer p { margin: 0; font-size: 12px; color: #ecf0db; line-height: 1.4; }
+.garden-ad-button { min-height: 42px; padding: 9px 14px; border-radius: 12px;
+  background: linear-gradient(135deg, #e6ca70, #cba75c); color: #17382d;
+  font-weight: 700; border: 1px solid #ffeab0; cursor: pointer; }
+.garden-ad-button:disabled { opacity: .58; cursor: not-allowed; }
+.garden-ad-status { font-size: 11px; color: #c7d7c6; line-height: 1.4; }
+@media (max-width: 480px) {
+  .garden-ad-offer { padding: 12px; gap: 6px; }
+  .garden-ad-offer strong { font-size: 12px; }
+  .garden-ad-offer p { font-size: 11px; }
+  .garden-ad-button { min-height: 39px; font-size: 11px; }
+}
